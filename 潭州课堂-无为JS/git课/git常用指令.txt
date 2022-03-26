@@ -67,7 +67,6 @@ git push origin --delete 分支名
 
 
 
-
 /*******
 Git 中 SSH key 生成步骤
 由于本地Git仓库和GitHub仓库之间的传输是通过SSH加密的，所以必须要让github仓库认证你SSH key，在此之前，必须要生成SSH key。
