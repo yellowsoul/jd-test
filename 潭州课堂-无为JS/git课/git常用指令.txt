@@ -34,7 +34,7 @@ git remote add origin git@github.com:yellowsoul/jd-test.git
 
 
 【推送到远程仓库主分支】
-$ git push origin master
+$ git push origin master(默认分支目前改为main)
 
 ===============
 第二种推送远程仓库方式（常用）
@@ -44,6 +44,21 @@ git clone git@github.com:yellowsoul/jd-test.git
 
 1.cd jd-test 进入文件夹
 2.git remote -v 查看关联
+3.然后放入文件，一套（git status ,git add . git commit -m '信息'）后
+4.$ git push origin main
+5.创建子分支 git branch yellow,然后就可以删除里面在你不想要的，然后再把新的或者修改的放进去，再推远程仓库，git push origin yellow，哪个分支就推到哪个名字。
+
+【如何合并分支】查看状态树 git log --graph --all --oneline
+
+git merge '分支名'
+
+【删除分支】
+git branch -d '分支名' (正常删除子分支得在父分支上删除，不过有强制删除的办法，就是把这里的'-d'改为'-D')
+
+【删除远程分支】（git branch -a 查看所有分支）
+
+git push origin --delete 分支名
+
 
 
 
