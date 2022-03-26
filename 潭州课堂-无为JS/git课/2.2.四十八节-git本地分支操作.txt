@@ -1,0 +1,36 @@
+
+=======================
+本地分支操作
+=======================
+
+【查看项目分支 默认有一条主分支“*master”】
+git branch
+
+【查看分支图表】
+git log --graph
+
+【创建分支 git branch "分支名"】
+git branch feature
+
+【切换分支】
+checkout feature
+
+【切换分支过程中创建一个新分支】
+git checkout -b "名字"
+
+【合并分支】
+git merge "分支名"
+
+【删除分支,删除前提是分支必须是在合并的分支下面，才有权力删除，但可以强制删除，把"d"改为大写，"branch -D"】
+git branch -d "分支名"
+
+
+【查看状态树】
+git log --graph --all --oneline
+
+
+
+
+
+
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script>
+		var html = document.documentElement;
+		html.style.fontSize = html.clientWidth/10+'px';
+		document.addEventListener('touchstart',function(ev){
+			ev.preventDefault();
+		});
+		</script>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			li{list-style: none;}
+			ul{font-size:0;}
+			.wrap{height:4.875rem;position: relative;overflow: hidden;}
+			.wrap ul{width:500%;overflow: hidden;}
+			.wrap ul li{float:left;width:10rem;}
+			.wrap ul li img{width: 10rem;}
+			
+			nav{position:absolute;left:0;bottom:5px;width:10rem;text-align: center;}
+			nav a{display: inline-block;height:6px;width:6px;border:1px solid #fff;border-radius:50%;}
+			.active{background:#fff;}
+		</style>
+	</head>
+	<body>
+		<div class="wrap">
+			<ul class="list">
+				<li><img src="images/1.jpg"/></li>
+				<li><img src="images/2.jpg"/></li>
+				<li><img src="images/3.jpg"/></li>
+				<li><img src="images/4.jpg"/></li>
+				<li><img src="images/5.jpg"/></li>
+			</ul>
+			<nav>
+				<a class="active"></a>
+				<a></a>
+				<a></a>
+				<a></a>
+				<a></a>
+			</nav>
+		</div>
+		<script type="text/javascript">
+			var oWrap = document.querySelector('.wrap'),
+				oList = document.querySelector('.list'),//ul
+				oA = document.querySelectorAll('a'),//下面控制按钮
+				w = oWrap.clientWidth,//一张图片的宽度
+				len = 0,
+				disX = 0,//按下的坐标
+				start =0,scorll =0,n=0;//初始list位置、滚动位置、滚动了几次
+			var on = 0;//控制下面第一个小白点
+				oList.innerHTML += oList.innerHTML;//把ul里所有li再复制一份
+				len = oList.children.length;//li的长度
+				oList.style.width = w * len +'px';//ul的宽度是所有子级长度乘以1张图片的宽度，
+				
+				oList.addEventListener('touchstart',star);//ul触摸开始
+				oList.addEventListener('touchmove',move);//ul触摸过程
+				oList.addEventListener('touchend',end);//ul触摸结束
+				function star(ev){
+					var e = ev.changedTouches[0];//获取第一个手指
+					disX = e.pageX;//手指的坐标位置
+					start = scorll;//下次触摸，把滚动过后的值赋值给初始值（第二次触摸理解）
+					oList.style.transition = 'none';//当触摸时把过渡效果去掉
+					
+					if(n==0){//当触摸到第一张的时候
+						start = -w * oA.length;//初始滚动值变为，第二组的第一张
+						oList.style.transform = 'translate3D('+ start +'px,0px,0px)';//滚动至第二组第一张
+						scorll = start;//ul初始值赋值给滚动值
+					}
+					if(n==len-1){//当触摸到第二组最后一张时
+						start = -w * (oA.length-1);//初始滚动值变为第一组的最后一张
+						oList.style.transform = 'translate3D('+ start +'px,0px,0px)';
+						scorll = start;//ul初始值赋值给滚动值
+					}
+				}
+				function move(ev){
+					var mX = ev.changedTouches[0].pageX - disX;//触摸移动过程手指坐标值减初始坐标值
+					scorll = start + mX;//ul初始位置加触摸移动位置，赋值给滚动位置
+					oList.style.transform = 'translate3D('+ scorll +'px,0px,0px)';
+				}
+				function end(ev){
+					//n等于，从右至左的移动，移动总值除以1张图片的宽度，12345张
+					n = -scorll/w;
+					n = n%1<0.5?Math.floor(n):Math.ceil(n);//判断n取模1，余的小数，小于0.5向下取整数，如果大于就向上取整，3.4->3,3.5->4,移动当前张图片过半就让ul移动到当前张的left
+					scorll = -w*n;//滚动等于1张图片的宽度乘以取整过后的值；
+					oList.style.transform = 'translate3D('+ scorll +'px,0px,0px)';//过渡滚动到取整的值*1张图的宽度的位置
+					oList.style.transition = '.5s';
+					
+					oA[on].className = '';//第一次，默认第一个小点去掉样式
+					oA[n%oA.length].className = 'active';//0-4第一组最后一张，就算n=5到第二组第一张模上5也是余0,重新开始；
+					on = n%oA.length;//保存当前的给上一次的on，那么下一次去除class 就是这一次的on了
+				}
+		</script>
+	</body>
+</html>

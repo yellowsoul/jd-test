@@ -1,0 +1,52 @@
+快捷键：用过的命令，在命令行通过键盘上的“上下”调出
+
+【展示不同】
+暂存区和工作区不同：（“-”暂存区，“+”工作区）
+git diff
+
+
+展示日志：
+git log
+
+
+不希望日志展示过多内容：(只显示 快照id和快照备注)
+git log --oneline
+
+
+比较仓库里面快照的区别(两个ID版本之间的区别)：
+git diff “快照ID1” “快照ID2” 
+
+
+比较工作区和仓库快照之间的不同
+git diff “快照ID1”
+
+
+比较暂存区和仓库快照ID之间的不同
+git diff --cached "快照ID"
+
+比较工作区和仓库上一个版本的不同
+git diff HEAD~
+
+
+【修改上一次最后一次提交的快照】
+git commit --amend --m 'index change'
+
+
+【删除暂存区和工作区，删除前提保证暂存区和工作区内容应一致，如果不一致还想删除就得用到强制删除命令"git rm -f index.html"】
+git rm index.html
+
+【删除暂存区】
+git rm --cached index.html
+
+
+【修改工作区和暂存区文件名字】
+git mv index.html new Index.html
+
+【】
+
+
+
+
+
+
+

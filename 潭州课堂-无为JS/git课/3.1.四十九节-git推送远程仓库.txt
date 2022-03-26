@@ -1,0 +1,64 @@
+【检测和远程仓库的连接】
+git remote -v
+
+===============
+【SSH方试】
+===============
+
+【输入命令在本地C盘找到ssh.pub电SSH秘钥】
+ssh-key gen
+
+【1.在github个人设置里找到“SSH and GPG keys”,设置秘钥，然后通过SSH转输】
+
+
+【2.绑定SSH秘钥后，在“Clone or download”复制“git@xx:yy/nn.git”，手动添加关联】（使用Use SSH）
+git remote add "别名" git@githbu.com:yellow/audio.git  (这么长的名字以后就用“别名”代替)
+《以下“别名”代指的就是远程的仓库》
+
+【3.克隆远程仓库文件到本地】
+git clone git@githbu.com:yellow/audio.git
+
+【4.进入这个文件夹 cd audio,此时文件夹里的.git文件夹就会自动关联】
+然后把你要上传的文件复制进这个文件夹里，然后执行命令：
+1.查看修改状态：git status，
+2.添加到暂存:git add .
+3.上传到本地仓库：git commit - m '备注信息'
+
+【5.推送至远程仓库】
+git push "别名" “master”（主分支）
+
+【6.本地再创建一个分支】
+1.“git branch yellow”，然后“checkout yellow”切换到分支，把里面的 可以删除，然后添加你想在这个分支里放的东西，比如“font”文件夹。
+2.再推送到远程仓库，git push "别名" "yellow"(子分支，本地分支名用什么，推送的也用什么名字) ，github仓库就会自动创新一个yellow的分支。
+
+
+
+/**忽略-->这个不常用
+
+【3.把代码推送到远程仓库】
+git push “别名“ “”
+
+【把远程仓库中的东西拉下来】
+
+git pull
+**/
+
+
+备注：github账号可以设置很多的ssh秘钥（正常公钥在公司一台，私钥在自己的笔记本），一台电脑只有一个公钥，如果换电脑了就得把之前的公钥注销然后重新配置。
+
+【SSH -》 协作式开发】需要在“设置”（不是在个人设置）里面添加人员“账号”(名称：比如yellowsoul)。
+1.这时候会发送到邮箱至人员账号：（提示谁在邀请你协同开发）。
+2.同意后，协同人员把远程的代码复制一份到本地开发（在本地新建文件夹），：因为协同人员没有绑定密钥，所以不能用SSH,所以得使用HTTP协议:复制“https://github.com/xx/audio.git”
+
+
+
+===============
+协同人员【HTTP方式】
+===============
+
+【打开本地文件夹，右键打开“Git Bash Here”把远程仓库文件拷贝下来，记住是拷贝自己的git clone 仓库】
+git clone https://github.com/xx/audio.git
+
+【】
+
+

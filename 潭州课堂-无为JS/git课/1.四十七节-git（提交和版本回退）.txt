@@ -1,0 +1,86 @@
+git教程步骤：（1.工作区 2.暂存区 3.仓库）红色：表示工作区改了暂存区没改，绿色：表示暂存区改了仓库没改
+快捷键 "ctrl+ins复制，shift+ins粘贴"
+
+==========base
+文件夹
+cd 46-Git
+
+git init
+
+git status
+
+添加到暂存:
+git add index.html
+
+删除暂存：
+git rm --cached index.html
+
+查看git仓库:
+git log
+
+提交仓库
+git commit
+
+
+------》 填写信息 改了哪些信息
+add index.html
+
+：wq 保存并退出
+
+
+===========start
+
+提交所有到暂存区：
+git add .
+
+提交所有到仓库 (commit -m '后面这些是备注信息')
+git commit -m 'change index.html new file index.js'
+
+
+同时提交暂存区和仓库：
+git commit -a -m 'change index.html index.js age'  (适用于修改，不适用于添加，如果一开始要添加一般使用 git add .)
+
+
+把上一个暂存区的回退到到工作区：
+git checkout --index.html
+
+版本回退，仓库回退到上一个版本，同时并把版本覆盖至暂存区
+
+git reset HEAD~
+
+软回退，只回退仓库，并没有修改暂存区
+
+git reset --soft HEAD~ 
+
+回退 （ 仓库、暂存区、工作区 ）三个区全改（这个属性少用）
+git reset --hard HEAD~
+
+备注：
+波浪线 - 上个版本 HEAD~  (~一个波浪代表上一个版本，~~就是上两个)
+
+跟数字 - 指定版本 HEAD~3 
+
+跟ID - 指定ID HEAD --hard 11381dd1("id号"复制5-6个就可以)
+
+=============
+查看之前的很多版本：
+git reflog
+
+恢复到之前指定ID版本:(同样有 git reset "id"，git reset soft "id"，git reset --hard "id")
+git reset --hard 8ff8a6b
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
