@@ -50,7 +50,7 @@ git clone git@github.com:yellowsoul/jd-test.git
 
 【如何合并分支】查看状态树 git log --graph --all --oneline
 
-git merge '分支名'
+git merge '分支名' （注意点：先将主分支 git pull origin main 拉取保证最新，而且子分支合并前提得推送至远程仓库才能合并。）
 
 【删除分支】
 git branch -d '分支名' (正常删除子分支得在父分支上删除，不过有强制删除的办法，就是把这里的'-d'改为'-D')
